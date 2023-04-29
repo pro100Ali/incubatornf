@@ -22,7 +22,6 @@ struct ContentView: View {
     @StateObject var game = GameModel(board: Array(repeating: Array(repeating: 0, count: 4), count: 4), score: 0, bestScore: 0)
     
     var body: some View {
-        GeometryReader  { geo in
             VStack {
                 Spacer()
                 HStack {
@@ -37,13 +36,11 @@ struct ContentView: View {
                     Button {
                         withAnimation(.spring()) {
                             game.reset()
-                            
-                            //                            game.startBot()
                         }
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
-                                .frame(width:geo.size.width * 0.11,height: geo.size.height * 0.06)
+                                .frame(width:50,height: 40)
                                 .foregroundColor(Color.yellow)
                             Image(systemName: "arrow.triangle.2.circlepath.circle")
                                 .font(.system(size: 35))
@@ -52,43 +49,10 @@ struct ContentView: View {
                     }
                 }.padding()
                 
-                //                Button {
-                //                    withAnimation(.spring()) {
-                //                        game.startBot()
-                //                    }
-                //                    print(game.board[0][0])
-                //                } label: {
-                //                    ZStack {
-                //                        RoundedRectangle(cornerRadius: 5)
-                //                            .frame(width:geo.size.width * 0.13,height: geo.size.height * 0.06)
-                //                            .foregroundColor(Color.yellow)
-                //                        Image(systemName: "person.3.sequence")
-                //                            .foregroundColor(Color.white)
-                //                    }
-                //                }
-                //                Button {
-                //                    game.stopBot()
-                //                } label: {
-                //                    Text("Stop the bot")
-                //                }
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                    
-                        .foregroundColor(Color(uiColor: UIColor(red: 0.73, green: 0.68, blue: 0.64, alpha: 1.00)))
-                        .opacity(0.5)
-                        .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.46)
-                    
-                    VStack {
-                        ForEach(0..<game.board.count, id: \.self) { i in
-                            HStack {
-                                ForEach(0..<game.board.count, id: \.self) { j in
-                                    CellView(value: game.board[i][j])
-                                        .frame(width: geo.size.width * 0.20, height: geo.size.height * 0.1)
-                                }
-                            }
-                        }
-                    }
-                }
+                
+                BoardView()
+                    .environmentObject(game)
+          
                 Spacer()
                 VStack(spacing: 1) {
                     Button {
@@ -102,8 +66,8 @@ struct ContentView: View {
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
-                                .frame(width:geo.size.width * 0.3, height: geo.size.height * 0.06)
-                            
+                                .frame(width:90, height: 50)
+
                             Image(systemName: "arrow.up")
                                 .foregroundColor(Color.white)
                                 .bold()
@@ -122,7 +86,7 @@ struct ContentView: View {
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 5)
-                                    .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.06)
+                                    .frame(width:90, height: 50)
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(Color.white)
                                     .bold()
@@ -141,13 +105,14 @@ struct ContentView: View {
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 5)
-                                    .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.06)
+                                    .frame(width:90, height: 50)
                                 Image(systemName: "arrow.right")
                                     .foregroundColor(Color.white)
                                     .bold()
                                 
                                 
-                            }                        }
+                            }
+                        }
                     }.padding()
                     
                     
@@ -161,7 +126,7 @@ struct ContentView: View {
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
-                                .frame(width:geo.size.width * 0.3,height: geo.size.height * 0.06)
+                                .frame(width:90, height: 50)
                             Image(systemName: "arrow.down")
                                 .foregroundColor(Color.white)
                                 .bold()
@@ -183,7 +148,7 @@ struct ContentView: View {
                     game.bestScore = savedBestScore
                 }
                 
-            }
+            
         }
     }
 }

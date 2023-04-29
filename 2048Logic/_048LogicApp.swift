@@ -11,7 +11,7 @@ import SwiftUI
 struct _048LogicApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomePage()
         }
     }
 }

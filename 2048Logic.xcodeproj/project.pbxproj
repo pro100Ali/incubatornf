@@ -7,24 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414DD57E29FD855700DD901A /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414DD57D29FD855700DD901A /* WelcomePage.swift */; };
+		414DD58029FD898700DD901A /* BotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414DD57F29FD898700DD901A /* BotView.swift */; };
 		41CCD16829FD19180002C143 /* _048LogicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD16729FD19180002C143 /* _048LogicApp.swift */; };
 		41CCD16A29FD19180002C143 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD16929FD19180002C143 /* ContentView.swift */; };
 		41CCD16C29FD19190002C143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CCD16B29FD19190002C143 /* Assets.xcassets */; };
 		41CCD16F29FD19190002C143 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CCD16E29FD19190002C143 /* Preview Assets.xcassets */; };
 		41CCD17629FD237C0002C143 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17529FD237C0002C143 /* GameModel.swift */; };
-		41CCD17829FD239B0002C143 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17729FD239B0002C143 /* CustomButton.swift */; };
 		41CCD17A29FD24130002C143 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17929FD24130002C143 /* BoardView.swift */; };
 		41CCD17C29FD29330002C143 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17B29FD29330002C143 /* CellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		414DD57D29FD855700DD901A /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
+		414DD57F29FD898700DD901A /* BotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotView.swift; sourceTree = "<group>"; };
 		41CCD16429FD19180002C143 /* 2048Logic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2048Logic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CCD16729FD19180002C143 /* _048LogicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _048LogicApp.swift; sourceTree = "<group>"; };
 		41CCD16929FD19180002C143 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		41CCD16B29FD19190002C143 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41CCD16E29FD19190002C143 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		41CCD17529FD237C0002C143 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
-		41CCD17729FD239B0002C143 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		41CCD17929FD24130002C143 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		41CCD17B29FD29330002C143 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,9 +63,10 @@
 			children = (
 				41CCD16729FD19180002C143 /* _048LogicApp.swift */,
 				41CCD16929FD19180002C143 /* ContentView.swift */,
+				414DD57F29FD898700DD901A /* BotView.swift */,
+				414DD57D29FD855700DD901A /* WelcomePage.swift */,
 				41CCD17529FD237C0002C143 /* GameModel.swift */,
 				41CCD17B29FD29330002C143 /* CellView.swift */,
-				41CCD17729FD239B0002C143 /* CustomButton.swift */,
 				41CCD17929FD24130002C143 /* BoardView.swift */,
 				41CCD16B29FD19190002C143 /* Assets.xcassets */,
 				41CCD16D29FD19190002C143 /* Preview Content */,
@@ -149,10 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CCD17829FD239B0002C143 /* CustomButton.swift in Sources */,
+				414DD58029FD898700DD901A /* BotView.swift in Sources */,
 				41CCD16A29FD19180002C143 /* ContentView.swift in Sources */,
 				41CCD17C29FD29330002C143 /* CellView.swift in Sources */,
 				41CCD17A29FD24130002C143 /* BoardView.swift in Sources */,
+				414DD57E29FD855700DD901A /* WelcomePage.swift in Sources */,
 				41CCD16829FD19180002C143 /* _048LogicApp.swift in Sources */,
 				41CCD17629FD237C0002C143 /* GameModel.swift in Sources */,
 			);
