@@ -19,7 +19,10 @@ enum Direction: String {
 struct ContentView: View {
     
     @AppStorage("bestScore") private var bestScore = 0
-    @StateObject var game = GameModel(board: Array(repeating: Array(repeating: 0, count: 4), count: 4), score: 0, bestScore: 0)
+    @StateObject var game = GameModel(board: Array(repeating: Array(repeating: 0, count: 4), count: 4), score: 0, bestScore: 0, gameOver: false, gameWon: false)
+    @State private var showingAlert = true
+    @State private var showingAlertWin = false
+
     
     var body: some View {
             VStack {
@@ -41,7 +44,7 @@ struct ContentView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
                                 .frame(width:50,height: 40)
-                                .foregroundColor(Color.yellow)
+                                .foregroundColor(Color(uiColor: UIColor(red: 0.80, green: 0.76, blue: 0.71, alpha: 1.00)))
                             Image(systemName: "arrow.triangle.2.circlepath.circle")
                                 .font(.system(size: 35))
                                 .foregroundColor(Color.white)
@@ -57,12 +60,8 @@ struct ContentView: View {
                 VStack(spacing: 1) {
                     Button {
                         withAnimation(.spring()) {
-                            print(game.score)
                             game.moveTiles(direction: Direction.up)
-                            bestScore = game.bestScore
-                            
                         }
-                        print(game.board[0][0])
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -79,10 +78,8 @@ struct ContentView: View {
                         Button {
                             withAnimation(.spring()) {
                                 game.moveTiles(direction: Direction.left)
-                                bestScore = game.bestScore
                                 
                             }
-                            print(game.board[0][0])
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 5)
@@ -90,18 +87,14 @@ struct ContentView: View {
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(Color.white)
                                     .bold()
-                                
-                                
                             }
                         }
                         Spacer()
                         Button {
                             withAnimation(.spring()) {
                                 game.moveTiles(direction: Direction.right)
-                                bestScore = game.bestScore
-                                
+
                             }
-                            print(game.board[0][0])
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 5)
@@ -119,10 +112,8 @@ struct ContentView: View {
                     Button {
                         withAnimation(.spring()) {
                             game.moveTiles(direction: Direction.down)
-                            bestScore = game.bestScore
-                            
+
                         }
-                        print(game.board[0][0])
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -142,14 +133,38 @@ struct ContentView: View {
             }
             .background(Color(uiColor: UIColor(red: 0.98, green: 0.97, blue: 0.94, alpha: 1.00)))
             .onAppear {
-                game.spawnNewTile()
+                
+                game.randomNewTile()
                 
                 if let savedBestScore = UserDefaults.standard.value(forKey: "bestScore") as? Int {
                     game.bestScore = savedBestScore
                 }
+                if game.gameOver {
+                    showingAlert = true
+                }
+                if game.gameWon {
+                    showingAlertWin = true
+                }
                 
             
         }
+            .alert(isPresented: $game.gameOver) {
+                Alert(
+                    title: Text("Ooops!"),
+                    message: Text("You lost the game! Please tap the reset button"),
+                    dismissButton: .default(Text("OK")) {
+                    }
+                )
+            }
+            .alert(isPresented: $game.gameWon) {
+                Alert(
+                    title: Text("Congratss!"),
+                    message: Text("You won the game!"),
+                    dismissButton: .default(Text("OK")) {
+                    }
+                )
+            }
+        
     }
 }
 

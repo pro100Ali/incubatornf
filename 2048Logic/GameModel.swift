@@ -11,10 +11,15 @@ class GameModel: ObservableObject {
     @Published var board: [[Int]]
     @Published var score: Int
     @Published var bestScore: Int
-    init(board: [[Int]], score: Int, bestScore: Int) {
+    @Published var gameOver: Bool
+    @Published var gameWon: Bool
+
+    init(board: [[Int]], score: Int, bestScore: Int, gameOver: Bool, gameWon: Bool) {
         self.board = board
         self.score = score
         self.bestScore = bestScore
+        self.gameOver = gameOver
+        self.gameWon = gameWon
     }
     func reset() {
         for i in 0..<4 {
@@ -22,27 +27,10 @@ class GameModel: ObservableObject {
                 board[i][j] = 0
             }
         }
-        spawnNewTile()
-        //        generateRandomTile()
+        randomNewTile()
         score = 0
     }
-    
-    //    func runBot() {
-    //        var count = 0
-    //        let maxCount = 100
-    //        let directions: [Direction] = [.left, .right, .up, .down]
-    //
-    //        while count < maxCount {
-    //            let randomDirection = directions.randomElement()!
-    //            let originalBoard = board
-    //            moveTiles(direction: randomDirection)
-    //
-    //            if board != originalBoard {
-    //                break
-    //            }
-    //            count += 1
-    //        }
-    //    }
+  
     
     var botTimer: Timer?
     
@@ -63,15 +51,17 @@ class GameModel: ObservableObject {
         moveTiles(direction: randomDirection)
     }
     
-    func moveTiles(direction: Direction) -> Bool {
+    func moveTiles(direction: Direction) {
         var moved = false
         var prevScore = score
         switch direction {
         case .left:
             for i in 0..<4 {
                 for j in 0..<4 {
+                    if board[i][j] == 2048 {
+                        gameWon = true
+                    }
                     if j > 0 && board[i][j] != 0 {
-                        
                         var k = j
                         while k > 0 && board[i][k-1] == 0 {
                             board[i][k-1] = board[i][k]
@@ -160,6 +150,7 @@ class GameModel: ObservableObject {
                     }
                 }
             }
+            
         }
         
         score = prevScore
@@ -168,15 +159,30 @@ class GameModel: ObservableObject {
         }
         
         if moved {
-            spawnNewTile()
+            randomNewTile()
+        }
+        if checkIfGameIsWon() {
+            gameWon = true
+        }
+        if !hasValidMoves() {
+            print("nooooo")
+            gameOver = true
         }
         
-        if !hasValidMoves() {
-            return false
-        }
-        return moved
+        
     }
     
+    func checkIfGameIsWon() -> Bool {
+        for row in 0..<4 {
+            for col in 0..<4 {
+                if board[row][col] == 32 {
+                    gameWon = true
+                    return true
+                }
+            }
+        }
+        return false
+    }
     func hasValidMoves() -> Bool {
         for i in 0..<4 {
             for j in 0..<4 {
@@ -194,7 +200,7 @@ class GameModel: ObservableObject {
         return false
     }
     
-    func spawnNewTile() {
+    func randomNewTile() {
         
         var emptyCells: [(Int, Int)] = []
         for i in 0..<4 {

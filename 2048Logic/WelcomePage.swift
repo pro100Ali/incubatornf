@@ -47,9 +47,7 @@ struct WelcomePage: View {
                         } label: {
                             ZStack {
                                 Rectangle().foregroundColor(Color(uiColor: UIColor(red: 0.404, green: 0.314, blue: 0.643, alpha: 1))).frame(height: 50).cornerRadius(8)
-                                
-                                Text("Bot").foregroundColor(Color.white).cornerRadius(8)
-                                
+                                Text("Bot").foregroundColor(Color.white).cornerRadius(8).bold()
                             }
                         }
                     }
