@@ -13,7 +13,7 @@ struct CellView: View {
        var cellColor: Color {
            switch value {
            case 0:
-               return Color(uiColor: UIColor(red: 0.83, green: 0.80, blue: 0.77, alpha: 1.00))
+               return Color(uiColor: UIColor(red: 0.80, green: 0.76, blue: 0.71, alpha: 1.00))
            case 2:
                return Color(uiColor: UIColor(red: 0.93, green: 0.89, blue: 0.86, alpha: 1.00))
                
@@ -57,12 +57,12 @@ struct CellView: View {
                RoundedRectangle(cornerRadius: 5)
                    .frame(width: 80, height: 80)
                    .foregroundColor(cellColor)
-//               if value != 0 {
+               if value != 0 {
                    Text("\(value)")
                        .bold()
                        .font(.system(size: 40))
                        .opacity(0.5)
-//               }
+               }
               
            }
        }
