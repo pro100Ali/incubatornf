@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct BotView: View {
-    @StateObject var game = GameModel(board: Array(repeating: Array(repeating: 0, count: 4), count: 4), score: 0, bestScore: 0, gameOver: false, gameWon: false)
+    @StateObject var game = GameModel(board: Array(repeating: Array(repeating: 0, count: 4), count: 4), score: 0, bestScore: 0, gameOver: false, gameWon: false, level: Levels.easy)
     
     @State private var showingAlert = true
     @State private var showingAlertWin = false
+    @State private var isGameOver = false
 
     var body: some View {
         GeometryReader { geo in
@@ -90,22 +91,25 @@ struct BotView: View {
             }
         }
             
-                .alert(isPresented: $game.gameOver) {
-                Alert(
-                    title: Text("Ooops!"),
-                    message: Text("You lost the game! Please tap the reset button"),
-                    dismissButton: .default(Text("OK")) {
-                    }
-                )
+        .sheet(isPresented: $game.gameWon, content: {
+            GameOverView()
+                .environmentObject(game)
+        })
+        .onChange(of: game.gameOver) { gameOver in
+            if gameOver {
+                isGameOver = true
             }
-            .alert(isPresented: $game.gameWon) {
-                Alert(
-                    title: Text("Congratss!"),
-                    message: Text("You won the game!"),
-                    dismissButton: .default(Text("OK")) {
-                    }
-                )
+        }
+        .sheet(isPresented: $game.gameOver, content: {
+            GameOverView()
+                .environmentObject(game)
+        })
+        .onChange(of: game.gameOver) { gameOver in
+            if gameOver {
+                isGameOver = true
             }
+        }
+        
     }
     
     

@@ -11,6 +11,7 @@ struct WelcomePage: View {
     
     @State private var firstViewIsOn = false
     @State private var secondViewIsOn = false
+    @State private var asd = Levels.easy
     
     
     var body: some View {

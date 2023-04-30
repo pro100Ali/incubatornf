@@ -16,6 +16,8 @@
 		41CCD17629FD237C0002C143 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17529FD237C0002C143 /* GameModel.swift */; };
 		41CCD17A29FD24130002C143 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17929FD24130002C143 /* BoardView.swift */; };
 		41CCD17C29FD29330002C143 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CCD17B29FD29330002C143 /* CellView.swift */; };
+		41F5AB2129FE245A00D34265 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AB2029FE245A00D34265 /* Limit.swift */; };
+		41F5AB2329FE580B00D34265 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AB2229FE580B00D34265 /* GameOverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		41CCD17529FD237C0002C143 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		41CCD17929FD24130002C143 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		41CCD17B29FD29330002C143 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		41F5AB2029FE245A00D34265 /* Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limit.swift; sourceTree = "<group>"; };
+		41F5AB2229FE580B00D34265 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,9 @@
 			children = (
 				41CCD16729FD19180002C143 /* _048LogicApp.swift */,
 				41CCD16929FD19180002C143 /* ContentView.swift */,
+				41F5AB2229FE580B00D34265 /* GameOverView.swift */,
 				414DD57F29FD898700DD901A /* BotView.swift */,
+				41F5AB2029FE245A00D34265 /* Limit.swift */,
 				414DD57D29FD855700DD901A /* WelcomePage.swift */,
 				41CCD17529FD237C0002C143 /* GameModel.swift */,
 				41CCD17B29FD29330002C143 /* CellView.swift */,
@@ -157,7 +163,9 @@
 				41CCD17C29FD29330002C143 /* CellView.swift in Sources */,
 				41CCD17A29FD24130002C143 /* BoardView.swift in Sources */,
 				414DD57E29FD855700DD901A /* WelcomePage.swift in Sources */,
+				41F5AB2129FE245A00D34265 /* Limit.swift in Sources */,
 				41CCD16829FD19180002C143 /* _048LogicApp.swift in Sources */,
+				41F5AB2329FE580B00D34265 /* GameOverView.swift in Sources */,
 				41CCD17629FD237C0002C143 /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

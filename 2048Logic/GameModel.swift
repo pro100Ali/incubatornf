@@ -6,6 +6,10 @@
 //
 
 import Foundation
+enum WinOrLose {
+    case win
+    case lose
+}
 
 class GameModel: ObservableObject {
     @Published var board: [[Int]]
@@ -13,14 +17,29 @@ class GameModel: ObservableObject {
     @Published var bestScore: Int
     @Published var gameOver: Bool
     @Published var gameWon: Bool
-
-    init(board: [[Int]], score: Int, bestScore: Int, gameOver: Bool, gameWon: Bool) {
+    @Published var level: Levels
+    
+//    @Published var maxLimit: Int
+    init(board: [[Int]], score: Int, bestScore: Int, gameOver: Bool, gameWon: Bool, level: Levels) {
         self.board = board
         self.score = score
         self.bestScore = bestScore
         self.gameOver = gameOver
         self.gameWon = gameWon
+        self.level = level
     }
+    
+    func maxLimit() -> Int {
+          switch level {
+          case .easy:
+              return 128
+          case .medium:
+              return 512
+          case .hard:
+              return 2048
+          }
+      }
+    
     func reset() {
         for i in 0..<4 {
             for j in 0..<4 {
@@ -58,9 +77,9 @@ class GameModel: ObservableObject {
         case .left:
             for i in 0..<4 {
                 for j in 0..<4 {
-                    if board[i][j] == 2048 {
-                        gameWon = true
-                    }
+//                    if board[i][j] == maxLimit() {
+//                        gameWon = true
+//                    }
                     if j > 0 && board[i][j] != 0 {
                         var k = j
                         while k > 0 && board[i][k-1] == 0 {
@@ -83,6 +102,7 @@ class GameModel: ObservableObject {
         case .right:
             for i in 0..<4 {
                 for j in (0..<4).reversed() {
+                    
                     if j < 3 && board[i][j] != 0 {
                         
                         var k = j
@@ -167,6 +187,7 @@ class GameModel: ObservableObject {
         if !hasValidMoves() {
             print("nooooo")
             gameOver = true
+            
         }
         
         
@@ -175,7 +196,7 @@ class GameModel: ObservableObject {
     func checkIfGameIsWon() -> Bool {
         for row in 0..<4 {
             for col in 0..<4 {
-                if board[row][col] == 32 {
+                if board[row][col] == maxLimit() {
                     gameWon = true
                     return true
                 }
@@ -197,6 +218,7 @@ class GameModel: ObservableObject {
                 }
             }
         }
+        
         return false
     }
     
